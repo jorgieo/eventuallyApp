@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventually Style Guide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto&display=swap" rel="stylesheet">
+    <style>
+        .container{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.5rem;
+            background-color: whitesmoke;
+            width: 50vw;
+            transform: translate(50%);
+        }
+        .title{
+            font-size: 5em;
+            font-family: 'Pacifico', cursive; 
+            color: #de6b48;           
+        }
+        .section{
+            margin: 1%;
+            padding: 1%;
+            background-color: #9ad2cb;
+            border: black 1px solid;
+        }
+        .color-container{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+        .color-box{
+            font-weight: bold;
+            color: #342e37;
+        }
+        .color-box.primary{
+            background-color: #de6b48;
+            border: whitesmoke 1px solid;
+            border-radius: 15px;
+        }
+        .color-box.secondary{
+            background-color: #e5b181;
+            border: whitesmoke 1px solid;
+            border-radius: 15px;
+        }
+        .color-box.tertiary{
+            background-color: #2d728f;
+            border: whitesmoke 1px solid;
+            border-radius: 15px;
+        }
+        .coolors{
+            border: whitesmoke 1px solid;
+            border-radius: 15px;
+        }
+        .head1{
+            color: #de6b48;
+        }
+        .head2{
+            color: #e5b181;
+        }
+        .head3{
+            color: #2d728f;
+        }
+        .btn-default{
+            background-color:  #e5b181;
+            width: 100px;
+            height: 50px;
+            border: solid 0px #342e37;
+        }
+        .btn-cancel{
+            background-color:  #eb6e4f;
+            width: 100px;
+            height: 50px;
+            border: solid 0px #342e37;
+        }
+        .btn-save{
+            background-color:  #c7e581;
+            width: 100px;
+            height: 50px;
+            border: solid 0px #342e37;
+        }
+        .btn{
+            font-size: .9em;
+            border-radius: 25px;
+        }
+        .btn:hover{
+            box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+        }
+        .input-form{
+            background-color: #8cc2da;
+            padding: 2em;
+            display: inline-block;
+            border-radius: 25px;
+        }
+        .text-input{
+            height: 2em;
+        }
+        .success{
+            background-color: #6ed89c;
+        }
+        .warning{
+            background-color: #e0c89a;
+        }
+        .danger{
+            background-color: #c96767;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title banner section">Eventually</div>
+        <div class="font section">
+            <h1>Eventually Style Guide</h1>
+            <p>The following guide explains the style for the several elements in the Eventually event planner app.</p>
+        </div>
+        <div class="color-theme section">
+            <h1>Colors:</h1>
+            <p>The following color scheme will be implemented</p>
+            <div class="color-container">
+                <div class="color-box section primary">Primary Color</div>
+                <div class="color-box section secondary">Secondary Color</div>
+                <div class="color-box section tertiary">Tertiary Color</div>
+            </div>
+            <p>The complete set of colors:</p>
+            <div class="coolors">
+                <!-- Coolors Palette Widget -->
+                <script src="https://coolors.co/palette-widget/widget.js"></script>
+                <script data-id="025680505574390033">new CoolorsPaletteWidget("025680505574390033", ["de6b48","e5b181","2d728f","9ad2cb","342e37"]); </script>
+            </div>
+        </div>
+        <div class="headings section">
+            <h1>Headings:</h1>
+            <p>
+                <h1 class="head1">Heading 1</h1>
+                <h2 class="head2">Heading 2</h2>
+                <h3 class="head3">Heading 3</h3>
+            </p>
+        </div>
+        <div class="buttons section">
+            <h1>Buttons:</h1>
+            <p>Styles for the application's buttons.</p>
+            <button class="btn btn-default">Default</button>
+            <button class="btn btn-cancel">Cancel</button>
+            <button class="btn btn-save">Save</button>
+
+        </div>
+        <div class="forms section">
+            <h1>Forms:</h1>
+            <p>Styles for the form elements.</p>
+            <form class="input-form" action="#">
+                <label for="name">Name</label><br>
+                <input class="btn text-input" type="text" name="name"><br><br>
+                <label for="email">Email</label><br>
+                <input class="btn text-input" type="text" name="email"><br><br>
+                <input class="btn btn-cancel" type="reset" value="Cancel">
+                <input class="btn btn-save" type="submit" value="Submit">
+            </form>
+            <form class="input-form" action="#">
+                <h3 class="head3">RSVP:</h3>
+                <input type="radio" name="rsvp" value="Going">
+                <label for="going">Going</label><br>
+                <input type="radio" name="rsvp" id="" value="Not Going">
+                <label for="not-going">Not Going</label><br><br>
+                <input class="btn btn-save" type="submit" value="Send">
+            </form>
+        </div>
+        <div class="messages section">
+            <h1>Messages:</h1>
+            <p>Style for aplication messages.</p>
+            <div class="success">
+                Success
+            </div>
+            <div class="warning">
+                Warning
+            </div>
+            <div class="danger">
+                Danger
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
