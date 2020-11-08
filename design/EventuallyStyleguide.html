@@ -6,12 +6,23 @@
     <title>Eventually Style Guide</title>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto&display=swap" rel="stylesheet">
     <style>
+        body{
+            --primary-color:  #de6b48;
+            --secondary-color: #2d728f;
+            --background-color: #9ad2cb;
+            --form-backgroun-color: #8cc2da;
+            --text-color: #342e37;
+            --success-color:#6ed89c;
+            --warning-color:#e0c89a;
+            --danger-color:#c96767;
+        }
         .container{
             display: flex;
             justify-content: center;
             flex-direction: column;
             font-family: 'Roboto', sans-serif;
             font-size: 1.5rem;
+            color: var(--text-color);
             background-color: whitesmoke;
             width: 50vw;
             transform: translate(50%);
@@ -19,68 +30,72 @@
         .title{
             font-size: 5em;
             font-family: 'Pacifico', cursive; 
-            color: #de6b48;           
+            color: var(--primary-color);           
         }
         .section{
             margin: 1%;
             padding: 1%;
-            background-color: #9ad2cb;
+            background-color: var(--background-color);
             border: black 1px solid;
         }
+
+        /* Colors */
         .color-container{
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             justify-content: center;
+            font-size: 1.2;
         }
         .color-box{
             font-weight: bold;
-            color: #342e37;
+            color: var(--text-color);
+            border: whitesmoke 1px solid;
+            border-radius: 15px;
         }
         .color-box.primary{
-            background-color: #de6b48;
-            border: whitesmoke 1px solid;
-            border-radius: 15px;
+            background-color:var(--primary-color);
         }
         .color-box.secondary{
-            background-color: #e5b181;
-            border: whitesmoke 1px solid;
-            border-radius: 15px;
+            background-color: var(--secondary-color);
         }
         .color-box.tertiary{
-            background-color: #2d728f;
-            border: whitesmoke 1px solid;
-            border-radius: 15px;
+            background-color: var(--text-color);
+            color: whitesmoke;
+        }
+        .color-box.background{
+            background-color: var(--background-color);
+        }
+        .color-box.forms{
+            background-color: var(--form-backgroun-color);
         }
         .coolors{
             border: whitesmoke 1px solid;
             border-radius: 15px;
         }
+
+        /* Headings */
         .head1{
-            color: #de6b48;
+            color: var(--primary-color);
         }
         .head2{
-            color: #e5b181;
+            color: var(--secondary-color);
         }
         .head3{
-            color: #2d728f;
+            color: var(--text-color);
         }
-        .btn-default{
-            background-color:  #e5b181;
-            width: 100px;
-            height: 50px;
-            border: solid 0px #342e37;
-        }
+
+        /* Buttons */
         .btn-cancel{
-            background-color:  #eb6e4f;
+            background-color: var(--secondary-color);
             width: 100px;
             height: 50px;
-            border: solid 0px #342e37;
+            border: solid 0px var(--text-color);
         }
         .btn-save{
-            background-color:  #c7e581;
+            background-color:  var(--primary-color);
             width: 100px;
             height: 50px;
-            border: solid 0px #342e37;
+            border: solid 0px var(--text-color);
         }
         .btn{
             font-size: .9em;
@@ -88,9 +103,12 @@
         }
         .btn:hover{
             box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+            color: whitesmoke;
         }
+
+        /* Input Forms */
         .input-form{
-            background-color: #8cc2da;
+            background-color: var(--form-backgroun-color);
             padding: 2em;
             display: inline-block;
             border-radius: 25px;
@@ -98,14 +116,19 @@
         .text-input{
             height: 2em;
         }
+
+        /* Messages */
         .success{
-            background-color: #6ed89c;
+            background-color: var(--success-color);
         }
         .warning{
-            background-color: #e0c89a;
+            background-color: var(--warning-color);
         }
         .danger{
-            background-color: #c96767;
+            background-color: var(--danger-color);
+        }
+        .message {
+            padding: 1em;
         }
     </style>
 </head>
@@ -120,15 +143,37 @@
             <h1>Colors:</h1>
             <p>The following color scheme will be implemented</p>
             <div class="color-container">
-                <div class="color-box section primary">Primary Color</div>
-                <div class="color-box section secondary">Secondary Color</div>
-                <div class="color-box section tertiary">Tertiary Color</div>
+                <div class="color-box section primary">
+                    <p>
+                        Titles, Headings, Calls to Action
+                    </p>
+                </div>
+                <div class="color-box section secondary">
+                    <p>
+                        Headings, Buttons
+                    </p>
+                </div>
+                <div class="color-box section tertiary">
+                    <p>
+                        Main Font Color
+                    </p>
+                </div>
+                <div class="color-box section background">
+                    <p>
+                        Background Color
+                    </p>
+                </div>
+                <div class="color-box section forms">
+                    <p>
+                        Forms
+                    </p>
+                </div>
             </div>
-            <p>The complete set of colors:</p>
+            <p>Main set of colors:</p>
             <div class="coolors">
                 <!-- Coolors Palette Widget -->
                 <script src="https://coolors.co/palette-widget/widget.js"></script>
-                <script data-id="025680505574390033">new CoolorsPaletteWidget("025680505574390033", ["de6b48","e5b181","2d728f","9ad2cb","342e37"]); </script>
+                <script data-id="011182582714709066">new CoolorsPaletteWidget("011182582714709066", ["de6b48","9ad2cb","2d728f","342e37"]); </script>
             </div>
         </div>
         <div class="headings section">
@@ -142,7 +187,6 @@
         <div class="buttons section">
             <h1>Buttons:</h1>
             <p>Styles for the application's buttons.</p>
-            <button class="btn btn-default">Default</button>
             <button class="btn btn-cancel">Cancel</button>
             <button class="btn btn-save">Save</button>
 
@@ -170,15 +214,18 @@
         <div class="messages section">
             <h1>Messages:</h1>
             <p>Style for aplication messages.</p>
-            <div class="success">
+            <div class="success color-box message">
                 Success
             </div>
-            <div class="warning">
+            <br>
+            <div class="warning color-box message">
                 Warning
             </div>
-            <div class="danger">
+            <br>
+            <div class="danger color-box message">
                 Danger
             </div>
+            <br>
         </div>
     </div>
     
