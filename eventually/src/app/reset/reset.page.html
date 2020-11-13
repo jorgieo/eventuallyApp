@@ -1,9 +1,16 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>reset</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>Reset</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-item>
+    <ion-label position="floating">
+      Email
+    </ion-label>
+    <ion-input type="email" autocomplete="email" [(ngModel)]="user.email" required></ion-input>
+  </ion-item>
 
+  <ion-button class="ion-padding" color="primary" expand="full" (click)="reset(user)">Request Password Reset</ion-button>
 </ion-content>
