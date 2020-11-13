@@ -21,21 +21,37 @@ export class ResetPage implements OnInit {
   }
 
   // TODO: method to send email to admin
-  async reset(user){
-    // Do something...
-    console.log(user)
-  }
+  async reset(email: string) {
+
+    if(this.formValidation()){
+      let loader = this.loadingCtrl.create({
+        message: "Please wait..."
+      });
+
+      (await loader).present();
+
+      try {
+        this.showToast(`Email Sent to: ${email}`)
+        await this.afAuth.sendPasswordResetEmail(
+          email, 
+          { url: 'http://localhost:8100/login' });
+      
+        } catch (e) {
+        this.showToast(e);
+      }
+
+      (await loader).dismiss();
+
+      this.navCtrl.navigateRoot("/login");
+      
+    };
+  } 
 
   formValidation() {
     if (!this.user.email){
       this.showToast("Enter Email!");
       return false;
     }
-    if (!this.user.password){
-      this.showToast("Enter Password!");
-      return false;
-    }
-
     return true
   }
 
