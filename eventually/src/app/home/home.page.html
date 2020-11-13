@@ -14,8 +14,30 @@
       </ion-item>
     
       <ion-card-content>
-        Some kind of content goes here
+
+        <ion-chip color="primary">
+          <ion-label>2</ion-label>
+          <ion-icon name="thumbs-up"></ion-icon>
+        </ion-chip>
+
+        <ion-chip color="danger">
+          <ion-label>1</ion-label>
+          <ion-icon name="thumbs-down"></ion-icon>
+        </ion-chip>
+
+        <ion-chip color="dark">
+          <ion-label>10</ion-label>
+          <ion-icon name="hourglass"></ion-icon>
+        </ion-chip>
+
       </ion-card-content>
     </ion-card>
   </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [routerLink]="['/add-event']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
 </ion-content>
