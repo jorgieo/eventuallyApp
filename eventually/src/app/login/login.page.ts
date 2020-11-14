@@ -31,9 +31,9 @@ export class LoginPage implements OnInit {
       try {
         await this.afAuth
         .signInWithEmailAndPassword(user.email, user.password)
-        .then(data => console.log(data));
+        .then(data => this.user.uid = data.user.uid);
 
-        this.navCtrl.navigateRoot('home');
+        this.navCtrl.navigateRoot(['/home', this.user.uid]);
 
       } catch (e) {
         this.showToast(e);
