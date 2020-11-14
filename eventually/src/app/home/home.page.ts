@@ -24,7 +24,7 @@ export class HomePage {
         this.showToast("Enter Title!");
         return false;
       }
-      if (!this.event.datetime){
+      if (!this.event.date){
         this.showToast("Select Date!");
         return false;
       }

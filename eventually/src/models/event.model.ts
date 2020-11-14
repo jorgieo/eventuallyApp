@@ -3,6 +3,7 @@ export interface Event {
     title:string;
     details:string;
     venue:string;
-    datetime:string;
+    date:string;
+    time:string;
     guestList:[];
 }

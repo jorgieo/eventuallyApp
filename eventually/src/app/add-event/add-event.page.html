@@ -18,9 +18,19 @@
     <ion-textarea [(ngModel)]="event.details"></ion-textarea>
   </ion-item>
 
-  <ion-item>
+  <!-- <ion-item>
     <ion-label>D MMM YYYY H:mm</ion-label>
-    <ion-datetime displayFormat="D MMM YYYY h:mm" min="1997" max="2010" value="2005-06-17T11:06Z" [(ngModel)]="event.datetime" required></ion-datetime>
+    <ion-datetime displayFormat="D MMM YYYY h:mm" min="2020" max="2030" value="2005-06-17T11:06Z" [(ngModel)]="event.datetime" required></ion-datetime>
+  </ion-item> -->
+
+  <ion-item>
+    <ion-label position="floating">MM/DD/YYYY</ion-label>
+    <ion-datetime displayFormat="MM/DD/YYYY" min="2020" max="2030" [(ngModel)]="event.date" required></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>HH:mm</ion-label>
+    <ion-datetime displayFormat="h:mm" [(ngModel)]="event.time"></ion-datetime>
   </ion-item>
 
   <ion-button class="ion-padding" color="primary" expand="full" (click)="createEvent(event)">Create</ion-button>
