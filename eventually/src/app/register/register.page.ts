@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { LoadingController, NavController, ToastController } from '@ionic/angular';
 import { User } from '../../models/user.model';
 
@@ -15,6 +16,7 @@ export class RegisterPage implements OnInit {
     private toastCtrl: ToastController,
     private loadingCtrl: LoadingController,
     private afAuth: AngularFireAuth,
+    private firestore: AngularFirestore,
     private navCtrl: NavController) {}
 
   ngOnInit() {
@@ -30,9 +32,12 @@ export class RegisterPage implements OnInit {
       try {
         await this.afAuth
         .createUserWithEmailAndPassword(user.email, user.password)
-        .then(data => console.log(data));
+        .then(data => this.user.uid = data.user.uid);
 
-        this.navCtrl.navigateRoot('home');
+        await this.firestore.collection('users').add(user);
+
+        // Navigate to home/:id
+        this.navCtrl.navigateRoot(['/home', this.user.uid]);
 
       } catch (e) {
         this.showToast(e);
