@@ -24,13 +24,13 @@
   </ion-item> -->
 
   <ion-item>
-    <ion-label position="floating">MM/DD/YYYY</ion-label>
+    <ion-label position="floating">DATE</ion-label>
     <ion-datetime displayFormat="MM/DD/YYYY" min="2020" max="2030" [(ngModel)]="event.date" required></ion-datetime>
   </ion-item>
 
   <ion-item>
-    <ion-label>HH:mm</ion-label>
-    <ion-datetime displayFormat="h:mm" [(ngModel)]="event.time"></ion-datetime>
+    <ion-label position="floating">TIME</ion-label>
+    <ion-datetime displayFormat="h:mm a" [(ngModel)]="event.time"></ion-datetime>
   </ion-item>
 
   <ion-button class="ion-padding" color="primary" expand="full" (click)="createEvent(event)">Create</ion-button>

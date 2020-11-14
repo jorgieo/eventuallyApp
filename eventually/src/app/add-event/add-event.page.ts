@@ -27,6 +27,9 @@ export class AddEventPage implements OnInit {
           message: "Please wait..."
         });
         (await loader).present();
+
+        event.date = event.date.split(/T(.+)/)[0];
+        event.time = event.time.split(/T/)[1].slice(0,5);
   
         try {
           await this.firestore.collection('events').add(event);
