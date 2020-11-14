@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { LoadingController, NavController, ToastController } from '@ionic/angular';
+import { Event } from '../../models/event.model'
 
 @Component({
   selector: 'app-add-event',
@@ -6,10 +9,56 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-event.page.scss'],
 })
 export class AddEventPage implements OnInit {
+  event = {} as Event;
 
-  constructor() { }
+  constructor(
+    private toastCtrl:ToastController,
+    private loadingCtrl: LoadingController,
+    private navCtrl: NavController,
+    private firestore: AngularFirestore) {}
 
-  ngOnInit() {
-  }
+    ngOnInit(){}
+
+    async createEvent(event:Event) {
+      // console.log(event);
+
+      if(this.formValidation()){
+        let loader = this.loadingCtrl.create({
+          message: "Please wait..."
+        });
+        (await loader).present();
+  
+        try {
+          await this.firestore.collection('events').add(event);
+
+        } catch (e) {
+          this.showToast(e);
+        }
+  
+        (await loader).dismiss();
+  
+        this.navCtrl.navigateRoot('home');
+      }
+    }
+  
+    formValidation() {
+      if (!this.event.title){
+        this.showToast("Enter Title!");
+        return false;
+      }
+      if (!this.event.datetime){
+        this.showToast("Select Date!");
+        return false;
+      }
+  
+      return true
+    }
+  
+    showToast(message:string) {
+      this.toastCtrl.create({
+        message: message,
+        duration: 3000
+      }).then(toastData => toastData.present());
+    }
 
 }
