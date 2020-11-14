@@ -23,6 +23,18 @@ const routes: Routes = [
     path: 'reset',
     loadChildren: () => import('./reset/reset.module').then( m => m.ResetPageModule)
   },
+  {
+    path: 'event-details',
+    loadChildren: () => import('./event-details/event-details.module').then( m => m.EventDetailsPageModule)
+  },
+  {
+    path: 'add-event',
+    loadChildren: () => import('./add-event/add-event.module').then( m => m.AddEventPageModule)
+  },
+  {
+    path: 'edit-event',
+    loadChildren: () => import('./edit-event/edit-event.module').then( m => m.EditEventPageModule)
+  },
 ];
 
 @NgModule({
