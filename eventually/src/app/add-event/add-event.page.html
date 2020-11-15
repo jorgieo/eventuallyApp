@@ -8,14 +8,21 @@
 
   <ion-item>
     <ion-label position="floating">
-      Ttile
+      Title
     </ion-label>
     <ion-input type="text" [(ngModel)]="event.title" required></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label position="floating">Description</ion-label>
-    <ion-textarea [(ngModel)]="event.details"></ion-textarea>
+    <ion-textarea [(ngModel)]="event.details" placeholder="Optional"></ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">
+      Venue
+    </ion-label>
+    <ion-input type="text" [(ngModel)]="event.venue" placeholder="Optional"></ion-input>
   </ion-item>
 
   <!-- <ion-item>
@@ -30,11 +37,11 @@
 
   <ion-item>
     <ion-label position="floating">TIME</ion-label>
-    <ion-datetime displayFormat="h:mm a" [(ngModel)]="event.time"></ion-datetime>
+    <ion-datetime displayFormat="h:mm a" [(ngModel)]="event.time" required></ion-datetime>
   </ion-item>
 
   <ion-button class="ion-padding" color="primary" expand="full" (click)="createEvent(event)">Create</ion-button>
 
-  <ion-button class="ion-padding" color="light" expand="full" [routerLink]="['/home']">Cancel</ion-button>
+  <ion-button class="ion-padding" color="light" expand="full" [routerLink]="['/home', uid]">Cancel</ion-button>
 
 </ion-content>
