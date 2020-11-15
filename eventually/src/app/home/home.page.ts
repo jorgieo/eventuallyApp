@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { LoadingController, NavController, ToastController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
+import { LoadingController, ToastController } from '@ionic/angular';
 import { Event } from '../../models/event.model'
 
 @Component({
@@ -10,27 +11,41 @@ import { Event } from '../../models/event.model'
 })
 export class HomePage {
   event = {} as Event;
+  events = [];
+  uid:string;
+
 
   constructor(
     private toastCtrl:ToastController,
     private loadingCtrl: LoadingController,
-    private navCtrl: NavController,
-    private firestore: AngularFirestore) {}
+    private firestore: AngularFirestore,
+    private route: ActivatedRoute) { }
 
     // get events
-  
-    formValidation() {
-      if (!this.event.title){
-        this.showToast("Enter Title!");
-        return false;
-      }
-      if (!this.event.date){
-        this.showToast("Select Date!");
-        return false;
-      }
-  
-      return true
+    ionViewWillEnter(){
+      this.uid = this.route.snapshot.params.id;
+      this.getEvents(this.uid);
     }
+
+    async getEvents(uid:string) {
+      let loader = this.loadingCtrl.create({
+        message: "Please wait..."
+      });
+      (await loader).present();
+      
+
+      try {
+        this.firestore.collection('events', ref => ref.where('userid', '==', uid)).snapshotChanges()
+        .subscribe(data => data.map(element => this.events.push(element.payload.doc.data())));
+        // console.log(this.events);
+
+        (await loader).dismiss();
+
+      } catch (error) {
+        this.showToast(error);
+      }
+    }
+  
   
     showToast(message:string) {
       this.toastCtrl.create({
