@@ -35,7 +35,7 @@ export class HomePage {
       
 
       try {
-        this.firestore.collection('events', ref => ref.where('uid', '==', this.uid)).snapshotChanges()
+        this.firestore.collection('events', ref => ref.where('userid', '==', uid)).snapshotChanges()
         .subscribe(data => data.map(element => this.events.push(element.payload.doc.data())));
         // console.log(this.events);
 
