@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { ActivatedRoute } from '@angular/router';
 import { LoadingController, NavController, ToastController } from '@ionic/angular';
 import { Event } from '../../models/event.model'
 
@@ -10,14 +11,18 @@ import { Event } from '../../models/event.model'
 })
 export class AddEventPage implements OnInit {
   event = {} as Event;
+  uid:string;
 
   constructor(
     private toastCtrl:ToastController,
     private loadingCtrl: LoadingController,
     private navCtrl: NavController,
-    private firestore: AngularFirestore) {}
+    private firestore: AngularFirestore,
+    private route: ActivatedRoute) {}
 
-    ngOnInit(){}
+    ngOnInit(){
+      this.uid = this.route.snapshot.params.id;
+    }
 
     async createEvent(event:Event) {
       // console.log(event);
