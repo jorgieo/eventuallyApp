@@ -34,7 +34,7 @@ export class RegisterPage implements OnInit {
         .createUserWithEmailAndPassword(user.email, user.password)
         .then(data => this.user.uid = data.user.uid);
 
-        await this.firestore.collection('users').add(user);
+        await this.firestore.collection('users').add({email:user.email,uid:user.uid});
 
         // Navigate to home/:id
         this.navCtrl.navigateRoot(['/home', this.user.uid]);
