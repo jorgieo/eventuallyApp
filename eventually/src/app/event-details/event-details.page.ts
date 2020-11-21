@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
-import { LoadingController, ToastController } from '@ionic/angular';
+import { LoadingController, NavController, ToastController } from '@ionic/angular';
 import { Event } from 'src/models/event.model';
 
 @Component({
@@ -12,12 +12,14 @@ import { Event } from 'src/models/event.model';
 export class EventDetailsPage implements OnInit {
   event = {} as Event;
   eventid = this.route.snapshot.params.eventid;
+  uid = this.route.snapshot.params.uid;
 
   constructor(
     private route:ActivatedRoute,
     private firestore: AngularFirestore,
     private loadingCtrl: LoadingController,
-    private toastCtrl: ToastController) { }
+    private toastCtrl: ToastController,
+    private navCtrl: NavController) { }
 
   ngOnInit() {
     console.log(this.route.snapshot.params);
@@ -40,6 +42,58 @@ export class EventDetailsPage implements OnInit {
     });
     
     (await loader).dismiss();
+  }
+
+  async updateEvent(event){
+    // update the event in firestore
+
+    if(this.formValidation()){
+      let loader = this.loadingCtrl.create({
+        message: "Please wait..."
+      });
+      (await loader).present();
+
+      // event.userid = this.uid;
+      // event.date = event.date.split(/T(.+)/)[0];
+      // event.time = event.time.split(/T/)[1].slice(0,5);
+      // event.venue = event.venue;
+
+      try {
+        await this.firestore.doc('events/' + this.eventid).update(event);
+
+      } catch (e) {
+        console.log(e)
+        this.showToast(e);
+      }
+
+      (await loader).dismiss();
+
+      this.navCtrl.navigateRoot(['home', this.uid]);
+    }
+  }
+
+  formValidation() {
+    if (!this.event.title){
+      this.showToast("Enter Title!");
+      return false;
+    }
+    if (!this.event.date){
+      this.showToast("Select Date!");
+      return false;
+    }
+    if (!this.event.time){
+      this.showToast("Pick a Time!");
+      return false;
+    }
+
+    return true
+  }
+
+  showToast(message:string) {
+    this.toastCtrl.create({
+      message: message,
+      duration: 3000
+    }).then(toastData => toastData.present());
   }
 
 }

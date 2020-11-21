@@ -2,26 +2,43 @@
   <ion-toolbar>
     <ion-back-button slot="start">
     </ion-back-button>
-    <ion-title>eventDetails</ion-title>
+    <ion-title>Edit Event Details</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-grid fixed>
-    <ion-row>
-      <ion-col class="column" size="12" size-sm *ngFor="let item of items">
-        <ion-card>
-          <ion-card-header>
-            <ion-card-title>
-              Title
-            </ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            {{item}}
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur odit vel officiis autem ut animi perspiciatis aspernatur voluptates repellat labore!</p>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+
+  <ion-item>
+    <ion-label position="floating">
+      Title
+    </ion-label>
+    <ion-input type="text" [(ngModel)]="event.title" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Description</ion-label>
+    <ion-textarea [(ngModel)]="event.details" placeholder="Optional" maxlength="100"></ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">
+      Venue
+    </ion-label>
+    <ion-input type="text" [(ngModel)]="event.venue" placeholder="Optional"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">DATE</ion-label>
+    <ion-datetime displayFormat="MM/DD/YYYY" min="2020" max="2030" [(ngModel)]="event.date" required></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">TIME</ion-label>
+    <ion-datetime displayFormat="h:mm a" [(ngModel)]="event.time" required></ion-datetime>
+  </ion-item>
+
+  <ion-button class="ion-padding" color="primary" expand="full" (click)="updateEvent(event)">Update</ion-button>
+
+  <!-- <ion-button class="ion-padding" color="light" expand="full" [routerLink]="['/home', uid]">Events List</ion-button> -->
+
 </ion-content>
