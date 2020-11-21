@@ -11,7 +11,7 @@ import { Event } from '../../models/event.model'
 })
 export class HomePage {
   event = {} as Event;
-  events = [];
+  events:any;
   uid:string;
 
 
@@ -23,7 +23,8 @@ export class HomePage {
 
     // get events
     ionViewWillEnter(){
-      this.uid = this.route.snapshot.params.id;
+      this.uid = this.route.snapshot.params.uid;
+      this.events = [];
       this.getEvents(this.uid);
     }
 
