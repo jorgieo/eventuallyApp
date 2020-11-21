@@ -21,7 +21,8 @@ export class AddEventPage implements OnInit {
     private route: ActivatedRoute) {}
 
     ngOnInit(){
-      this.uid = this.route.snapshot.params.id;
+      this.uid = this.route.snapshot.params.uid;
+      // console.log(this.uid)
       // initialize optional event properties
       this.event.venue = '';
     }

@@ -3,7 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'home/:id',
+    path: 'home/:uid',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
@@ -28,7 +28,7 @@ const routes: Routes = [
     loadChildren: () => import('./event-details/event-details.module').then( m => m.EventDetailsPageModule)
   },
   {
-    path: 'add-event/:id',
+    path: 'home/:uid/add-event',
     loadChildren: () => import('./add-event/add-event.module').then( m => m.AddEventPageModule)
   },
   {
