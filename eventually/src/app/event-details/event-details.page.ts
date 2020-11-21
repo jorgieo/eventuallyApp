@@ -53,10 +53,7 @@ export class EventDetailsPage implements OnInit {
       });
       (await loader).present();
 
-      // event.userid = this.uid;
-      // event.date = event.date.split(/T(.+)/)[0];
-      // event.time = event.time.split(/T/)[1].slice(0,5);
-      // event.venue = event.venue;
+      event.date = event.date.split(/T(.+)/)[0];
 
       try {
         await this.firestore.doc('events/' + this.eventid).update(event);
