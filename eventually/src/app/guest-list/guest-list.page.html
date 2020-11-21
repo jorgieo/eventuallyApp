@@ -9,6 +9,9 @@
   <ion-list class="ion-padding">
     <ion-item-sliding>
       <ion-item>
+        <ion-avatar>
+          <img src="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortFlat&accessoriesType=Prescription02&hairColor=BrownDark&facialHairType=Blank&clotheType=Hoodie&clotheColor=Black&eyeType=Happy&eyebrowType=Default&mouthType=Default&skinColor=Brown"/>
+        </ion-avatar>
         <ion-label>
           Guest
           <ion-item lines="none">
@@ -16,14 +19,19 @@
           </ion-item>
         </ion-label>
       </ion-item>
+      
       <ion-item-options side="start">
-        <ion-item-option (click)="favorite(item)">Favorite</ion-item-option>
-        <ion-item-option color="primary" (click)="share(item)">Share</ion-item-option>
+        <ion-item-option color="light" (click)="editGuest(guest)">
+          <ion-icon name="create" size="large"></ion-icon>
+        </ion-item-option>
       </ion-item-options>
-  
-      <ion-item-options side="start">
-        <ion-item-option (click)="unread(item)">Unread</ion-item-option>
+
+      <ion-item-options side="end">
+        <ion-item-option color="light"(click)="deleteGuest(guest)">
+          <ion-icon name="close-circle" color="danger" size="large"></ion-icon>
+        </ion-item-option>
       </ion-item-options>
+
     </ion-item-sliding>
   </ion-list>
 
