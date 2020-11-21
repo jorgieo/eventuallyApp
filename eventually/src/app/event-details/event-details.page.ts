@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-event-details',
@@ -8,10 +9,11 @@ import { Component, OnInit } from '@angular/core';
 export class EventDetailsPage implements OnInit {
   items =[];
 
-  constructor() { }
+  constructor(private route:ActivatedRoute) { }
 
   ngOnInit() {
     this.makeItems();
+    console.log(this.route.snapshot.params);
   }
 
   makeItems(){
