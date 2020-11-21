@@ -37,7 +37,8 @@ export class HomePage {
 
       try {
         this.firestore.collection('events', ref => ref.where('userid', '==', uid).orderBy('date', 'desc')).snapshotChanges()
-        .subscribe(data => data.map(element => this.events.push(element.payload.doc.data())));
+        .subscribe(data => data.map(element => this.events.push({eventid: element.payload.doc.id,
+                                                                  eventdata: element.payload.doc.data()})));
         console.log(this.events);
 
         (await loader).dismiss();
