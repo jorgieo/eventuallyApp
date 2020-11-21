@@ -22,7 +22,7 @@ export class EventDetailsPage implements OnInit {
     private navCtrl: NavController) { }
 
   ngOnInit() {
-    console.log(this.route.snapshot.params);
+    // console.log(this.route.snapshot.params);
     this.getEventById(this.eventid);
   }
 
@@ -33,12 +33,14 @@ export class EventDetailsPage implements OnInit {
     (await loader).present();
 
     this.firestore.doc('events/' + eventid).valueChanges().subscribe(data => {
-      this.event.title = data['title'];
-      this.event.details = data['details'];
-      this.event.venue = data['venue'];
-      this.event.date = data['date'];
-      this.event.time = data['time'];
-      console.log(data);
+      if(data){
+        // console.log(data);
+        this.event.title = data['title'];
+        this.event.details = data['details'];
+        this.event.venue = data['venue'];
+        this.event.date = data['date'];
+        this.event.time = data['time'];
+      }
     });
     
     (await loader).dismiss();
@@ -67,6 +69,19 @@ export class EventDetailsPage implements OnInit {
 
       this.navCtrl.navigateRoot(['home', this.uid]);
     }
+  }
+
+  async cancelEvent(){
+    let loader = this.loadingCtrl.create({
+      message: "Please wait..."
+    });
+    (await loader).present();
+
+    await this.firestore.doc('events/' + this.eventid).delete();
+
+    (await loader).dismiss();
+
+    this.navCtrl.navigateRoot(['home', this.uid]);
   }
 
   formValidation() {
