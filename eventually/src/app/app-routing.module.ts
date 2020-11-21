@@ -34,7 +34,11 @@ const routes: Routes = [
   {
     path: 'edit-event',
     loadChildren: () => import('./edit-event/edit-event.module').then( m => m.EditEventPageModule)
+  },  {
+    path: 'guest-list',
+    loadChildren: () => import('./guest-list/guest-list.module').then( m => m.GuestListPageModule)
   },
+
 ];
 
 @NgModule({
