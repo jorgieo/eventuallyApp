@@ -24,7 +24,7 @@ const routes: Routes = [
     loadChildren: () => import('./reset/reset.module').then( m => m.ResetPageModule)
   },
   {
-    path: 'event-details',
+    path: 'home/:uid/event-details',
     loadChildren: () => import('./event-details/event-details.module').then( m => m.EventDetailsPageModule)
   },
   {
