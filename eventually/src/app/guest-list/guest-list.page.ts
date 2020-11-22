@@ -27,7 +27,6 @@ export class GuestListPage implements OnInit {
   
     // get guests
     ionViewWillEnter(){
-      this.guests = [];
       this.getGuests(this.eventid);
     }
 
@@ -39,12 +38,11 @@ export class GuestListPage implements OnInit {
 
       try {
         this.firestore.collection('guests', ref => ref.where('eventid', '==', eventid).orderBy('name', 'asc')).snapshotChanges()
-        .subscribe(data => data.map(element => this.guests.push({guestid: element.payload.doc.id,
+        .subscribe(data => this.guests = data.map(element => {return {guestid: element.payload.doc.id,
                                                                   name: element.payload.doc.data()['name'],
                                                                   gender: element.payload.doc.data()['gender'],
                                                                   response: element.payload.doc.data()['response']
-                                                              })));
-        console.log(this.guests);
+                                                              }}));
 
         (await loader).dismiss();
 
