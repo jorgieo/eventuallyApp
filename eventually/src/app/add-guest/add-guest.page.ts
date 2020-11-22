@@ -37,7 +37,7 @@ export class AddGuestPage implements OnInit {
       this.guest.gender = 'n';
     }
     if(!this.guest.response){
-      this.guest.response = 'w';
+      this.guest.response = 'Waiting';
     }
     
     if(this.formValidation()){

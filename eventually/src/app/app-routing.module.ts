@@ -40,7 +40,7 @@ const routes: Routes = [
     loadChildren: () => import('./guest-list/guest-list.module').then( m => m.GuestListPageModule)
   },
   {
-    path: 'guest-details',
+    path: 'home/:uid/event-details/:eventid/guest-list/:guestid/guest-details',
     loadChildren: () => import('./guest-details/guest-details.module').then( m => m.GuestDetailsPageModule)
   },
   {

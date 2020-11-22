@@ -1,33 +1,33 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>guestList</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>Guest List</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
   <ion-list class="ion-padding">
-    <ion-item-sliding>
+    <ion-item-sliding *ngFor="let guest of guests">
       <ion-item>
-        <ion-avatar>
+        <ion-avatar> 
           <img [src]="avatar"/>
         </ion-avatar>
         <ion-label>
-          Guest
+          {{guest.name}}
           <ion-item lines="none">
-            <ion-label>Response</ion-label>
+            <ion-label>{{guest.response}}</ion-label>
           </ion-item>
         </ion-label>
       </ion-item>
 
       <ion-item-options side="start">
-        <ion-item-option color="light" (click)="editGuest(guest)">
+        <ion-item-option color="light" [routerLink]="[guest.guestid, 'guest-details']">
           <ion-icon name="create" color="primary" size="large"></ion-icon>
         </ion-item-option>
       </ion-item-options>
 
       <ion-item-options side="end">
-        <ion-item-option color="light"(click)="deleteGuest(guest)">
+        <ion-item-option color="light"(click)="deleteGuest(guest.guestid)">
           <ion-icon name="trash" color="danger" size="large"></ion-icon>
         </ion-item-option>
       </ion-item-options>
