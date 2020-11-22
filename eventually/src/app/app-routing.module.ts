@@ -38,12 +38,13 @@ const routes: Routes = [
   {
     path: 'home/:uid/event-details/:eventid/guest-list',
     loadChildren: () => import('./guest-list/guest-list.module').then( m => m.GuestListPageModule)
-  },  {
+  },
+  {
     path: 'guest-details',
     loadChildren: () => import('./guest-details/guest-details.module').then( m => m.GuestDetailsPageModule)
   },
   {
-    path: 'add-guest',
+    path: 'home/:uid/event-details/:eventid/guest-list/add-guest',
     loadChildren: () => import('./add-guest/add-guest.module').then( m => m.AddGuestPageModule)
   },
 
