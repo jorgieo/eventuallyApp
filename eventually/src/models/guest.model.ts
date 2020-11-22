@@ -3,4 +3,6 @@ export interface Guest {
     name:string;
     gender:string;
     response:string;
+    eventid:string;
+    uid:string;
 }
