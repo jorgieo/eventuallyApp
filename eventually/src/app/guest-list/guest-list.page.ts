@@ -25,7 +25,7 @@ export class GuestListPage implements OnInit {
   }
 
   
-    // get events
+    // get guests
     ionViewWillEnter(){
       this.guests = [];
       this.getGuests(this.eventid);
@@ -52,7 +52,17 @@ export class GuestListPage implements OnInit {
         this.showToast(error);
       }
     }
+
+    async deleteGuest(guestid:string){
+      let loader = this.loadingCtrl.create({
+        message: "Please wait..."
+      });
+      (await loader).present();
   
+      await this.firestore.doc('guests/' + guestid).delete();
+  
+      (await loader).dismiss();
+    }
   
     showToast(message:string) {
       this.toastCtrl.create({
