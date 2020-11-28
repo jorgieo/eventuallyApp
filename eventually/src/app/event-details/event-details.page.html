@@ -8,43 +8,53 @@
 
 <ion-content>
 
-  <ion-item>
-    <ion-label position="floating">
-      Title
-    </ion-label>
-    <ion-input type="text" [(ngModel)]="event.title" required></ion-input>
-  </ion-item>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="4" class="go-away"></ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">
+            Title
+          </ion-label>
+          <ion-input type="text" [(ngModel)]="event.title" required></ion-input>
+        </ion-item>
+      
+        <ion-item>
+          <ion-label position="floating">Description</ion-label>
+          <ion-textarea [(ngModel)]="event.details" placeholder="Optional" maxlength="100"></ion-textarea>
+        </ion-item>
+      
+        <ion-item>
+          <ion-label position="floating">
+            Venue
+          </ion-label>
+          <ion-input type="text" [(ngModel)]="event.venue" placeholder="Optional"></ion-input>
+        </ion-item>
+      
+        <ion-item>
+          <ion-label position="floating">DATE</ion-label>
+          <ion-datetime displayFormat="MM/DD/YYYY" min="2020" max="2030" [(ngModel)]="event.date" required></ion-datetime>
+        </ion-item>
+      
+        <ion-item>
+          <ion-label position="floating">TIME</ion-label>
+          <ion-datetime displayFormat="h:mm a" [(ngModel)]="event.time" required></ion-datetime>
+        </ion-item>
+      
+        <ion-button class="ion-padding" color="primary" expand="full" (click)="updateEvent(event)" shape="round">Update</ion-button>
+      
+        <ion-button class="ion-padding" color="danger" expand="full" (click)="cancelEvent()" shape="round">Cancel Event</ion-button>
+      
+        <ion-item-divider></ion-item-divider>
+      
+        <ion-button class="ion-padding" expand="full" [routerLink]="['guest-list']" shape="round">
+          View/Edit Guests
+        </ion-button>
+      </ion-col>
+      <ion-col size="4" class="go-away"></ion-col>
+    </ion-row>
+  </ion-grid>
 
-  <ion-item>
-    <ion-label position="floating">Description</ion-label>
-    <ion-textarea [(ngModel)]="event.details" placeholder="Optional" maxlength="100"></ion-textarea>
-  </ion-item>
-
-  <ion-item>
-    <ion-label position="floating">
-      Venue
-    </ion-label>
-    <ion-input type="text" [(ngModel)]="event.venue" placeholder="Optional"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label position="floating">DATE</ion-label>
-    <ion-datetime displayFormat="MM/DD/YYYY" min="2020" max="2030" [(ngModel)]="event.date" required></ion-datetime>
-  </ion-item>
-
-  <ion-item>
-    <ion-label position="floating">TIME</ion-label>
-    <ion-datetime displayFormat="h:mm a" [(ngModel)]="event.time" required></ion-datetime>
-  </ion-item>
-
-  <ion-button class="ion-padding" color="primary" expand="full" (click)="updateEvent(event)" shape="round">Update</ion-button>
-
-  <ion-button class="ion-padding" color="danger" expand="full" (click)="cancelEvent()" shape="round">Cancel Event</ion-button>
-
-  <ion-item-divider></ion-item-divider>
-
-  <ion-button class="ion-padding" expand="full" [routerLink]="['guest-list']" shape="round">
-    View/Edit Guests
-  </ion-button>
+  
 
 </ion-content>
