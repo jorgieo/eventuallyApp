@@ -76,7 +76,7 @@ export class GuestDetailsPage implements OnInit {
 
       (await loader).dismiss();
 
-      this.navCtrl.navigateRoot(['home', this.uid, 'event-details', this.eventid, 'guest-list']);
+      this.navCtrl.navigateBack(['home', this.uid, 'event-details', this.eventid, 'guest-list']);
     }
   }
 
