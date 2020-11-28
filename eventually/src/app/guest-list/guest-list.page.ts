@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { LoadingController, ToastController } from '@ionic/angular';
-import { avatars } from '../../assets/avatars'
 
 @Component({
   selector: 'app-guest-list',
@@ -12,7 +11,6 @@ import { avatars } from '../../assets/avatars'
 export class GuestListPage implements OnInit {
   eventid = this.route.snapshot.params.eventid;
   uid = this.route.snapshot.params.uid;
-  avatar = avatars.male_avatar;
   guests:any;
 
   constructor(
