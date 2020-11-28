@@ -1,5 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
+    <ion-back-button slot="start">
+    </ion-back-button>
     <ion-title>Guest List</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,8 +11,14 @@
   <ion-list class="ion-padding">
     <ion-item-sliding *ngFor="let guest of guests">
       <ion-item>
-        <ion-avatar> 
-          <img [src]="avatar"/>
+        <ion-avatar *ngIf="guest.gender == 'm'"> 
+          <img src="../../assets/male_avatar.svg"/>
+        </ion-avatar>
+        <ion-avatar *ngIf="guest.gender == 'f'"> 
+          <img src="../../assets/female_avatar.svg"/>
+        </ion-avatar>
+        <ion-avatar *ngIf="guest.gender == 'n'"> 
+          <img src="../../assets/non_binary_avatar.svg"/>
         </ion-avatar>
         <ion-label>
           {{guest.name}}
