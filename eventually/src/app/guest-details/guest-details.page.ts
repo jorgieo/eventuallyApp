@@ -27,7 +27,6 @@ export class GuestDetailsPage implements OnInit {
   }
 
   async getGuestById(guestid:string){
-    console.log(guestid);
 
     let loader = this.loadingCtrl.create({
       message: "Please wait..."
@@ -76,7 +75,7 @@ export class GuestDetailsPage implements OnInit {
 
       (await loader).dismiss();
 
-      this.navCtrl.navigateRoot(['home', this.uid, 'event-details', this.eventid, 'guest-list']);
+      this.navCtrl.navigateBack(['home', this.uid, 'event-details', this.eventid, 'guest-list']);
     }
   }
 

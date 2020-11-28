@@ -105,12 +105,18 @@
     --background: var(--ion-color-primary);
   }
 
-  ion-button{
-    --border-radius: 25px;
-  }
-
   --ion-font-family: 'Roboto', sans-serif;
 
+}
+
+/** global form style **/
+ion-item{
+  border-radius: 1em;
+  margin: .3em;
+}
+
+ion-card{
+  border-radius: 1em;
 }
 
 @media (prefers-color-scheme: dark) {
