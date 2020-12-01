@@ -5,43 +5,49 @@
 </ion-header>
 
 <ion-content>
-
-  <ion-item>
-    <ion-label position="floating">
-      Title
-    </ion-label>
-    <ion-input type="text" [(ngModel)]="event.title" required></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label position="floating">Description</ion-label>
-    <ion-textarea [(ngModel)]="event.details" placeholder="Optional" maxlength="100"></ion-textarea>
-  </ion-item>
-
-  <ion-item>
-    <ion-label position="floating">
-      Venue
-    </ion-label>
-    <ion-input type="text" [(ngModel)]="event.venue" placeholder="Optional"></ion-input>
-  </ion-item>
-
-  <!-- <ion-item>
-    <ion-label>D MMM YYYY H:mm</ion-label>
-    <ion-datetime displayFormat="D MMM YYYY h:mm" min="2020" max="2030" value="2005-06-17T11:06Z" [(ngModel)]="event.datetime" required></ion-datetime>
-  </ion-item> -->
-
-  <ion-item>
-    <ion-label position="floating">DATE</ion-label>
-    <ion-datetime displayFormat="MM/DD/YYYY" min="2020" max="2030" [(ngModel)]="event.date" required></ion-datetime>
-  </ion-item>
-
-  <ion-item>
-    <ion-label position="floating">TIME</ion-label>
-    <ion-datetime displayFormat="h:mm a" [(ngModel)]="event.time" required></ion-datetime>
-  </ion-item>
-
-  <ion-button class="ion-padding" color="primary" expand="full" (click)="createEvent(event)">Create</ion-button>
-
-  <ion-button class="ion-padding" color="light" expand="full" [routerLink]="['/home', uid]">Cancel</ion-button>
-
+  <ion-grid>
+    <ion-row>
+      <ion-col size="4" class="go-away"></ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">
+            Title
+          </ion-label>
+          <ion-input type="text" [(ngModel)]="event.title" required></ion-input>
+        </ion-item>
+      
+        <ion-item>
+          <ion-label position="floating">Description</ion-label>
+          <ion-textarea [(ngModel)]="event.details" placeholder="Optional" maxlength="100"></ion-textarea>
+        </ion-item>
+      
+        <ion-item>
+          <ion-label position="floating">
+            Venue
+          </ion-label>
+          <ion-input type="text" [(ngModel)]="event.venue" placeholder="Optional"></ion-input>
+        </ion-item>
+      
+        <!-- <ion-item>
+          <ion-label>D MMM YYYY H:mm</ion-label>
+          <ion-datetime displayFormat="D MMM YYYY h:mm" min="2020" max="2030" value="2005-06-17T11:06Z" [(ngModel)]="event.datetime" required></ion-datetime>
+        </ion-item> -->
+      
+        <ion-item>
+          <ion-label position="floating">DATE</ion-label>
+          <ion-datetime displayFormat="MM/DD/YYYY" min="2020" max="2030" [(ngModel)]="event.date" required></ion-datetime>
+        </ion-item>
+      
+        <ion-item>
+          <ion-label position="floating">TIME</ion-label>
+          <ion-datetime displayFormat="h:mm a" [(ngModel)]="event.time" required></ion-datetime>
+        </ion-item>
+      
+        <ion-button class="ion-padding" color="primary" expand="full" (click)="createEvent(event)" shape="round">Create</ion-button>
+      
+        <ion-button class="ion-padding" color="light" expand="full" [routerLink]="['/home', uid]" shape="round">Cancel</ion-button>
+      </ion-col>
+      <ion-col size="4" class="go-away"></ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
