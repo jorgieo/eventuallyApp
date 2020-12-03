@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
-import { LoadingController, ToastController } from '@ionic/angular';
+import { LoadingController, NavController, ToastController } from '@ionic/angular';
 import { Event } from '../../models/event.model'
 
 @Component({
@@ -19,7 +20,9 @@ export class HomePage {
     private toastCtrl:ToastController,
     private loadingCtrl: LoadingController,
     private firestore: AngularFirestore,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private afAuth: AngularFireAuth,
+    private navCtrl: NavController) { }
 
     // get events
     ionViewWillEnter(){
@@ -46,6 +49,12 @@ export class HomePage {
       } catch (error) {
         this.showToast(error);
       }
+    }
+
+    async signOut(){
+      await this.afAuth.signOut().then(() => {
+        this.navCtrl.navigateRoot('/');
+      })
     }
   
   
