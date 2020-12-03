@@ -14,6 +14,7 @@ export class HomePage {
   event = {} as Event;
   events:any;
   uid:string;
+  sub:any;
 
 
   constructor(
@@ -27,7 +28,7 @@ export class HomePage {
     // get events
     ionViewWillEnter(){
       this.uid = this.route.snapshot.params.uid;
-      this.events = [];
+      // this.events = [];
       this.getEvents(this.uid);
     }
 
@@ -39,9 +40,13 @@ export class HomePage {
       
 
       try {
-        this.firestore.collection('events', ref => ref.where('userid', '==', uid).orderBy('date', 'asc')).snapshotChanges()
-        .subscribe(data => data.map(element => this.events.push({eventid: element.payload.doc.id,
-                                                                  eventdata: element.payload.doc.data()})));
+        // Saving returned subscription to observable to later unsubscribe on signout
+        this.sub = this.firestore.collection('events', ref => ref.where('userid', '==', uid).orderBy('date', 'asc')).snapshotChanges()
+        .subscribe(data => this.events = data.map(element => {
+          return {eventid: element.payload.doc.id,
+          eventdata: element.payload.doc.data()
+          };
+        }));
         // console.log(this.events);
 
         (await loader).dismiss();
@@ -54,7 +59,7 @@ export class HomePage {
     async signOut(){
       await this.afAuth.signOut().then(() => {
         this.navCtrl.navigateRoot('/');
-      })
+      }).catch((error) => {console.log(error)})
     }
   
   
@@ -63,6 +68,11 @@ export class HomePage {
         message: message,
         duration: 3000
       }).then(toastData => toastData.present());
+    }
+
+    // Must unsubscribe before destroying the view to avoid errors
+    ionViewWillLeave(){
+      this.sub.unsubscribe();
     }
 
 }

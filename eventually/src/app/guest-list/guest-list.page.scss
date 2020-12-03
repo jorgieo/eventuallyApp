@@ -1,0 +1,11 @@
+.app-title{
+    font-family: 'Pacifico';
+    font-size: 3em;
+    color: var(--ion-color-primary);
+  }
+  
+  @media only screen and (max-width: 768px) {
+    .go-away {
+      display: none;
+    }
+  }
