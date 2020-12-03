@@ -1,11 +1,17 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Login</ion-title>
-  </ion-toolbar>
+<!-- cleaner look without a header on the home page -->
 </ion-header>
 
 <ion-content>
   <ion-grid>
+    <ion-row>
+      <ion-col size="4" class="go-away"></ion-col>
+      <ion-col>
+        <div class="app-title ion-text-center ion-padding-top">Eventually</div>
+      </ion-col>
+      <ion-col size="4" class="go-away"></ion-col>
+    </ion-row>
+
     <ion-row>
       <ion-col size="4" class="go-away"></ion-col>
       <ion-col>
@@ -25,7 +31,7 @@
 
         <ion-button class="ion-padding" color="primary" expand="full" (click)="login(user)" shape="round">Login</ion-button>
 
-        <ion-button class="ion-padding" color="light" expand="full" [routerLink]="['/register']" shape="round">Register</ion-button>
+        <ion-button class="ion-padding" color="secondary" expand="full" [routerLink]="['/register']" shape="round">Register</ion-button>
 
         <ion-button class="ion-padding" color="light" expand="full" [routerLink]="['/reset']" shape="round">Password Reset</ion-button>
       </ion-col>
