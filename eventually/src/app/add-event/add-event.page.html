@@ -4,6 +4,9 @@
   </ion-toolbar>
 </ion-header>
 
+<!-- The form is wrapped in an ion-grid with at least one row and three columns.
+      A media query is being used to remove the columns for medium to small screens -->
+
 <ion-content>
   <ion-grid>
     <ion-row>
@@ -27,11 +30,6 @@
           </ion-label>
           <ion-input type="text" [(ngModel)]="event.venue" placeholder="Optional"></ion-input>
         </ion-item>
-      
-        <!-- <ion-item>
-          <ion-label>D MMM YYYY H:mm</ion-label>
-          <ion-datetime displayFormat="D MMM YYYY h:mm" min="2020" max="2030" value="2005-06-17T11:06Z" [(ngModel)]="event.datetime" required></ion-datetime>
-        </ion-item> -->
       
         <ion-item>
           <ion-label position="floating">DATE</ion-label>

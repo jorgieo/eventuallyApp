@@ -22,19 +22,22 @@ export class GuestListPage implements OnInit {
   ngOnInit() {
   }
 
-  
-    // get guests
+    // Use View Will Enter lifecycle to retrieve guest documents before the component loads
     ionViewWillEnter(){
       this.getGuests(this.eventid);
     }
 
     async getGuests(eventid:string) {
+      /** Retrieves all guest objects from the firestore 'guests' collection */
+
       let loader = this.loadingCtrl.create({
         message: "Please wait..."
       });
       (await loader).present();
 
       try {
+        /** Update guests property with the return of mapping the values emitted via snapshot changes from querying firestore.
+         * The query is indexed by event ID and ordered ascending by name. */
         this.firestore.collection('guests', ref => ref.where('eventid', '==', eventid).orderBy('name', 'asc')).snapshotChanges()
         .subscribe(data => this.guests = data.map(element => {return {guestid: element.payload.doc.id,
                                                                   name: element.payload.doc.data()['name'],
@@ -50,11 +53,14 @@ export class GuestListPage implements OnInit {
     }
 
     async deleteGuest(guestid:string){
+      /** Deletes a document from 'guests' collection. */
+
       let loader = this.loadingCtrl.create({
         message: "Please wait..."
       });
       (await loader).present();
   
+      // Create a reference to a specific document ID in 'guests' then delete it.
       await this.firestore.doc('guests/' + guestid).delete();
   
       (await loader).dismiss();

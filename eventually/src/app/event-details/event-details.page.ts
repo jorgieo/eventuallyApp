@@ -22,19 +22,22 @@ export class EventDetailsPage implements OnInit {
     private navCtrl: NavController) { }
 
   ngOnInit() {
-    // console.log(this.route.snapshot.params);
     this.getEventById(this.eventid);
   }
 
   async getEventById(eventid:string){
+    /** Retrieves a document from the firestore 'events' collection based a matching document ID */
+
     let loader = this.loadingCtrl.create({
       message: "Please wait..."
     });
     (await loader).present();
 
+    // Retrieve a document by subscribing to its valueChanges observable.
+    // Note, onSnapshotChanges() is also valid.
+    // If data is returned, the update all local event input fields via two-way binding.
     this.firestore.doc('events/' + eventid).valueChanges().subscribe(data => {
       if(data){
-        // console.log(data);
         this.event.title = data['title'];
         this.event.details = data['details'];
         this.event.venue = data['venue'];
@@ -47,7 +50,7 @@ export class EventDetailsPage implements OnInit {
   }
 
   async updateEvent(event){
-    // update the event in firestore
+    /** Update a (whole) document in firestore*/
 
     if(this.formValidation()){
       let loader = this.loadingCtrl.create({
@@ -55,6 +58,7 @@ export class EventDetailsPage implements OnInit {
       });
       (await loader).present();
 
+      // Update date by splitting the ISO date format returned by the date picker
       event.date = event.date.split(/T(.+)/)[0];
 
       try {
@@ -67,20 +71,27 @@ export class EventDetailsPage implements OnInit {
 
       (await loader).dismiss();
 
+      // Navigate to the home page
       this.navCtrl.navigateRoot(['home', this.uid]);
     }
   }
 
   async cancelEvent(){
+    /** Removed a document from the firestore 'events' collection.
+     * Effectively cancelling the event.
+     */
+
     let loader = this.loadingCtrl.create({
       message: "Please wait..."
     });
     (await loader).present();
 
+    // Delete event document based on document ID.
     await this.firestore.doc('events/' + this.eventid).delete();
 
     (await loader).dismiss();
 
+    // Navigate to the home page
     this.navCtrl.navigateRoot(['home', this.uid]);
   }
 

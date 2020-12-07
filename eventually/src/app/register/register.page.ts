@@ -23,6 +23,8 @@ export class RegisterPage implements OnInit {
   }
 
   async register(user:User) {
+    /** Create a user on Firebase authentication service. */
+
     if(this.formValidation()){
       let loader = this.loadingCtrl.create({
         message: "Please wait..."
@@ -30,13 +32,15 @@ export class RegisterPage implements OnInit {
       (await loader).present();
 
       try {
+        // Create user then resolve the user's ID.
         await this.afAuth
         .createUserWithEmailAndPassword(user.email, user.password)
         .then(data => this.user.uid = data.user.uid);
 
+        // Add a document to the 'users' collection in firestore
         await this.firestore.collection('users').add({email:user.email,uid:user.uid});
 
-        // Navigate to home/:id
+        // Navigate to the home page
         this.navCtrl.navigateRoot(['/home', this.user.uid]);
 
       } catch (e) {

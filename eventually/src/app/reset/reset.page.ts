@@ -21,7 +21,9 @@ export class ResetPage implements OnInit {
   }
 
   // TODO: method to send email to admin
+
   async reset(email: string) {
+    /** Trigger a password reset email from the Firebase authentication service. */
 
     if(this.formValidation()){
       let loader = this.loadingCtrl.create({
@@ -31,10 +33,11 @@ export class ResetPage implements OnInit {
       (await loader).present();
 
       try {
+        // Send email to the provided address and return to the login screen
         this.showToast(`Email Sent to: ${email}`)
         await this.afAuth.sendPasswordResetEmail(
           email, 
-          { url: 'http://localhost:8100/login' });
+          { url: '/' });
       
         } catch (e) {
         this.showToast(e);
@@ -42,7 +45,8 @@ export class ResetPage implements OnInit {
 
       (await loader).dismiss();
 
-      this.navCtrl.navigateRoot("/login");
+      // Navigate to the default path clearing the URL tree (root)
+      this.navCtrl.navigateRoot("/");
       
     };
   } 
