@@ -2,7 +2,7 @@
   "name": "Eventually",
   "short_name": "Eventually",
   "theme_color": "#9ad2cb",
-  "background_color": "#fafafa",
+  "background_color": "#9ad2cb",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
