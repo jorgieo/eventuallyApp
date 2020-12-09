@@ -22,6 +22,8 @@ export class LoginPage implements OnInit {
   }
 
   async login(user:User) {
+    /** Authenticate the user via Firebase auth Angular API */
+
     if(this.formValidation()){
       let loader = this.loadingCtrl.create({
         message: "Please wait..."
@@ -29,10 +31,12 @@ export class LoginPage implements OnInit {
       (await loader).present();
 
       try {
+        // Pass email and password to AngularFireAuth. Then resolve the user's Firebase ID.
         await this.afAuth
         .signInWithEmailAndPassword(user.email, user.password)
         .then(data => this.user.uid = data.user.uid);
 
+        // Navigate to the home page clearing the URL tree (root).
         this.navCtrl.navigateRoot(['/home', this.user.uid]);
 
       } catch (e) {

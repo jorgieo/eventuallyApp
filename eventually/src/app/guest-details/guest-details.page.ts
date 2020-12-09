@@ -27,15 +27,18 @@ export class GuestDetailsPage implements OnInit {
   }
 
   async getGuestById(guestid:string){
+    /** Retrieve a document from the firestore 'guests' collection based on document ID. */
 
     let loader = this.loadingCtrl.create({
       message: "Please wait..."
     });
     (await loader).present();
-
+    
+    // Retrieve a document by subscribing to its valueChanges observable.
+    // Note, onSnapshotChanges() is also valid.
+    // If data is returned, the update all local event input fields via two-way binding.
     this.firestore.doc('guests/' + guestid).valueChanges().subscribe(data => {
       if(data){
-        // console.log(data);
         this.guest.name = data['name'];
         this.guest.email = data['email'];
         this.guest.gender = data['gender'];
@@ -48,15 +51,17 @@ export class GuestDetailsPage implements OnInit {
   }
 
   selectedGender(event){
+    /** Update the gender field from the value emitted by the radio button event. */
     this.guest.gender = event.detail.value;
   }
 
   selectedRSVP(event){
+    /** Update the response field from the value emitted by the radio button event. */
     this.guest.response = event.detail.value;
   }
 
   async updateGuest(){
-    // update the guest in firestore
+    /** Update a (whole) document in the 'guests' collection based on document ID. */
 
     if(this.formValidation()){
       let loader = this.loadingCtrl.create({
@@ -65,6 +70,7 @@ export class GuestDetailsPage implements OnInit {
       (await loader).present();
 
       try {
+        // Update firestore object with guest object
         await this.firestore.doc('guests/' + this.guestid).update(this.guest);
         this.showToast("Guest Info Updated.")
 
@@ -75,6 +81,7 @@ export class GuestDetailsPage implements OnInit {
 
       (await loader).dismiss();
 
+      // Navigate back to the guest list
       this.navCtrl.navigateBack(['home', this.uid, 'event-details', this.eventid, 'guest-list']);
     }
   }

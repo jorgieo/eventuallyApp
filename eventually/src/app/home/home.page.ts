@@ -25,10 +25,9 @@ export class HomePage {
     private afAuth: AngularFireAuth,
     private navCtrl: NavController) { }
 
-    // get events
+    // Use View Will Enter lifecycle to retrieve event documents before the component loads
     ionViewWillEnter(){
       this.uid = this.route.snapshot.params.uid;
-      // this.events = [];
       this.getEvents(this.uid);
     }
 
@@ -40,14 +39,15 @@ export class HomePage {
       
 
       try {
-        // Saving returned subscription to observable to later unsubscribe on signout
+        /** Update events property with the return of mapping the values emitted via snapshot changes from querying firestore.
+         * The query is indexed by user ID and ordered ascending by date.
+         * Saving returned subscription to observable to later unsubscribe on signout */
         this.sub = this.firestore.collection('events', ref => ref.where('userid', '==', uid).orderBy('date', 'asc')).snapshotChanges()
         .subscribe(data => this.events = data.map(element => {
           return {eventid: element.payload.doc.id,
           eventdata: element.payload.doc.data()
           };
         }));
-        // console.log(this.events);
 
         (await loader).dismiss();
 
@@ -57,6 +57,8 @@ export class HomePage {
     }
 
     async signOut(){
+      /** Sign out from firebase and navigate to the default path. */
+
       await this.afAuth.signOut().then(() => {
         this.navCtrl.navigateRoot('/');
       }).catch((error) => {console.log(error)})
@@ -70,7 +72,7 @@ export class HomePage {
       }).then(toastData => toastData.present());
     }
 
-    // Must unsubscribe before destroying the view to avoid errors
+    // Unsubscribe before destroying the view
     ionViewWillLeave(){
       this.sub.unsubscribe();
     }
